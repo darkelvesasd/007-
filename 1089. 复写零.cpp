@@ -1,37 +1,29 @@
 class Solution {
 public:
     void duplicateZeros(vector<int>& arr) {
-int n = arr.size();
-	int top = -1;
-	int i = -1;
-	while(top<n-1)
+vector<int> queue(10000);
+	int front = 0;
+	int rear = 0;
+	int n = arr.size();
+	for (int i = 0; i < n; i++)
 	{
-		i++;
-		if (arr[i])
+		queue[front++] = arr[i];
+	}
+	int i = 0;
+	while (rear < front&&i<n)
+	{
+		int c = queue[rear++];
+		if (c == 0)
 		{
-			top++;
+			arr[i++] = c;
+			if (i < n)
+			{
+				arr[i++] = c;
+			}
 		}
 		else
 		{
-			top += 2;
-		}
-	}
-	if (top >= n)
-	{
-		arr[--top] = 0;
-		i--;
-		top--;
-	}
-	while (i >= 0)
-	{
-		if (arr[i])
-		{
-			arr[top--] = arr[i--];
-		}
-		else
-		{
-			arr[top--] = arr[i];
-			arr[top--] = arr[i--];
+			arr[i++] = c;
 		}
 	}
     }
