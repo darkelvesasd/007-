@@ -8,15 +8,7 @@ public:
 	int left = 0;
 	while (right < n)
 	{
-		if (sum < target)
-		{
-			sum += nums[right++];
-		}
-		else
-		{
-			len = min(len, right - left);
-			sum -= nums[left++];
-		}
+		sum += nums[right++];
 		while (sum >= target)
 		{
 			len = min(len, right - left);
